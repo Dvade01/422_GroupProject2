@@ -85,7 +85,10 @@ def calculate_delays(received_details):
 
 def assess_phishing_risk(locations):
     """ Assess the phishing risk based on the locations of the IP addresses. """
-    high_risk_countries = {'CN', 'RU', 'NG'}  # Example set of high-risk countries
+    # Expanded set of high-risk countries
+    high_risk_countries = {
+        'CN', 'RU', 'NG', 'UA', 'PK', 'VN', 'IR', 'BR', 'TR', 'IN'
+    }
     suspicious_patterns = []
     risk_score = 0
 
@@ -93,19 +96,19 @@ def assess_phishing_risk(locations):
     for loc in locations:
         if loc['country'] in high_risk_countries:
             risk_score += 1
-            suspicious_patterns.append(f"High-risk country: {loc['country']}")
+            suspicious_patterns.append(f"High-risk country detected: {loc['country']}")
 
     # Check for erratic geographical movements
     for i in range(1, len(locations)):
         if locations[i]['country'] != "Unknown Country" and locations[i - 1]['country'] != "Unknown Country":
             if locations[i]['country'] != locations[i - 1]['country']:
-                suspicious_patterns.append(f"Jump from {locations[i - 1]['country']} to {locations[i]['country']}")
+                suspicious_patterns.append(
+                    f"Geographical jump from {locations[i - 1]['country']} to {locations[i]['country']}")
 
     # Simple heuristic: if more than two high-risk indicators are found, flag as suspicious
     if risk_score > 2:
         return True, suspicious_patterns
     return False, suspicious_patterns
-
 
 # Modify the main function to include phishing risk assessment
 def main():
