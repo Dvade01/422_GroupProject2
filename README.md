@@ -12,3 +12,5 @@ def get_ipgeolocation_geolocation(ip):
 def get_ipstack_geolocation(ip):
 
 these have limited requests
+
+I have added a ip_usage.txt file that says how many we have used
