@@ -110,7 +110,6 @@ def assess_phishing_risk(locations):
         return True, suspicious_patterns
     return False, suspicious_patterns
 
-
 # Modify the main function to include phishing risk assessment
 def main():
     try:
