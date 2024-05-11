@@ -3,7 +3,7 @@ from email import policy
 from datetime import datetime
 from ip_geolocation import get_ip_geolocation  # Ensure this module is correctly implemented
 
-from virus_total import query_virustotal, analyze_ip_reputation # this is from virus total
+from virus_total import query_virustotal, analyze_ip_reputation  # this is from virus total
 
 import re
 
@@ -85,7 +85,10 @@ def calculate_delays(received_details):
 
 def assess_phishing_risk(locations):
     """ Assess the phishing risk based on the locations of the IP addresses. """
-    high_risk_countries = {'CN', 'RU', 'NG'}  # Example set of high-risk countries
+    # Expanded set of high-risk countries
+    high_risk_countries = {
+        'CN', 'RU', 'NG', 'UA', 'PK', 'VN', 'IR', 'BR', 'TR', 'IN'
+    }
     suspicious_patterns = []
     risk_score = 0
 
@@ -93,13 +96,14 @@ def assess_phishing_risk(locations):
     for loc in locations:
         if loc['country'] in high_risk_countries:
             risk_score += 1
-            suspicious_patterns.append(f"High-risk country: {loc['country']}")
+            suspicious_patterns.append(f"High-risk country detected: {loc['country']}")
 
     # Check for erratic geographical movements
     for i in range(1, len(locations)):
         if locations[i]['country'] != "Unknown Country" and locations[i - 1]['country'] != "Unknown Country":
             if locations[i]['country'] != locations[i - 1]['country']:
-                suspicious_patterns.append(f"Jump from {locations[i - 1]['country']} to {locations[i]['country']}")
+                suspicious_patterns.append(
+                    f"Geographical jump from {locations[i - 1]['country']} to {locations[i]['country']}")
 
     # Simple heuristic: if more than two high-risk indicators are found, flag as suspicious
     if risk_score > 2:
@@ -147,7 +151,6 @@ def main():
         print(f"- {pattern}")
 
 
-
 """
 When I get to work I will check an IP address and a series of steps I took to see if something was malicious using
 the ANY.RUN api tool, this tool will give a run down the IP or Mac Address searched, it will give a report and verdict
@@ -155,12 +158,6 @@ it will return a SHAH number which we will be able to cross reference with our V
 
 this feature will also play a key role in the development of the packCapture.py
 """
-
-
-
-
-
-
 
 if __name__ == "__main__":
     main()
