@@ -11,26 +11,42 @@ def query_virustotal(ip):
     url = f"https://www.virustotal.com/api/v3/ip_addresses/{ip}"
     response = requests.get(url, headers=headers)
     if response.status_code == 200:
-        data = response.json()
-        return data
+        return response.json()
     else:
         return {"error": f"Failed to fetch data from VirusTotal: {response.status_code}"}
 
 
 def analyze_ip_reputation(ip):
-    """ Analyze the reputation of an IP using VirusTotal. """
+    """ Analyze the reputation of an IP using VirusTotal with prioritization for specific vendors. """
     result = query_virustotal(ip)
     if 'error' not in result:
-        # Example: Extract some information from the VirusTotal response
+        analysis_results = result['data']['attributes']['last_analysis_results']
+        preferred_vendors = ['Webroot', 'Fortinet', 'Bitdefender']
+        vendor_reports = {}
+
+        for vendor in preferred_vendors:
+            vendor_report = analysis_results.get(vendor, {})
+            vendor_reports[vendor] = {
+                "Detected": vendor_report.get("detected", "No data"),
+                "Result": vendor_report.get("result", "No data")
+            }
+
         malicious_votes = result['data']['attributes']['last_analysis_stats']['malicious']
         harmless_votes = result['data']['attributes']['last_analysis_stats']['harmless']
-        return {
+
+        analysis_details = {
             "IP": ip,
             "Malicious Votes": malicious_votes,
             "Harmless Votes": harmless_votes,
-            "Details": "Likely malicious" if malicious_votes > harmless_votes else "Likely harmless"
+            "Preferred Vendor Reports": vendor_reports,
+            "General Assessment": "Likely malicious" if malicious_votes > harmless_votes else "Likely harmless"
         }
-    return result
+
+        # Formatting the dictionary output more vertically
+        formatted_output = "\n".join([f"{key}: {value}" for key, value in analysis_details.items()])
+        return formatted_output
+
+    return "Error in retrieving data"
 
 
 # Example usage
