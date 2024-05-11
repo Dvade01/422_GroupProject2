@@ -147,5 +147,20 @@ def main():
         print(f"- {pattern}")
 
 
+
+"""
+When I get to work I will check an IP address and a series of steps I took to see if something was malicious using
+the ANY.RUN api tool, this tool will give a run down the IP or Mac Address searched, it will give a report and verdict
+it will return a SHAH number which we will be able to cross reference with our Virus TOTal api to help further determine the mal-intent,
+
+this feature will also play a key role in the development of the packCapture.py
+"""
+
+
+
+
+
+
+
 if __name__ == "__main__":
     main()
