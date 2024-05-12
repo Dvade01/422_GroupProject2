@@ -14,7 +14,7 @@ If you are working on the server, let me know and I will change the username to 
 
 **Password:** 0000
 
-## Log in to MariaDB
+## Log in to MariaDB (MariaDB is a better version of MySQL while the operation/commands are the same).
 
 Log in to the MariaDB command line as the root user:
 
