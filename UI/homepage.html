@@ -24,7 +24,7 @@
             align-items:center;
             background-color: #f0f0f0;
             border-bottom: 3px solid black;
-            padding: 10px;
+            padding: 10px 10px 0 10px;
         }
 
         .logo {
@@ -47,14 +47,19 @@
             flex:0;
         }
 
-        .tab {
+        .tab, .dark-tab {
             padding: 10px 20px;
             border: 1px solid #ccc;
-            margin: 0;
+            margin: 0px 1px 0px 1px;
             cursor: pointer;
             flex: 0;
             text-align:center;
             background-color: white;
+            border-radius: 20px 20px 0px 0px;
+        }
+        
+        .dark-tab {
+            background-color: rgb(164, 164, 164);
         }
 
         .comprehensive-button_img {
@@ -124,19 +129,33 @@
             transition: transform 1s ease-in-out;
         }
     </style>
+    <script src="script.js"></script>
 </head>
 <body>
     <div class="container">
         <div class="header-container">
             <img src="/UI/media/logo.png" alt="CyberGuard Logo" class="logo" />
             <div class="tabs">
-                <div class="tab">Home</div>
-                <div class="tab">Email Analysis</div>
-                <div class="tab">Packet Capture</div>
-                <div class="tab">Geolocation Quiz</div>
-                <div class="tab">Virus Detection</div>
-                <div class="tab">Account</div>
-                <div class="tab">Setting</div>
+                <div class="tab" id="home-button-light" onclick="tabButton('home-button-light', 'home-button-dark')">Home</div>
+                <div class="dark-tab" id="home-button-dark" style="display: none" onclick="tabButton('home-button-dark', 'home-button-light')">Home</div>
+
+                <div class="tab" id="email-button-light" onclick="tabButton('email-button-light', 'email-button-dark')">Email Analysis</div>
+                <div class="dark-tab" id="email-button-dark" style="display: none"  onclick="tabButton('email-button-dark', 'email-button-light')">Email Analysis</div>
+
+                <div class="tab" id="packet-button-light" onclick="tabButton('packet-button-light', 'packet-button-dark')">Packet Capture</div>
+                <div class="dark-tab" id="packet-button-dark" style="display: none"  onclick="tabButton('packet-button-dark', 'packet-button-light')">Packet Capture</div>
+
+                <div class="tab" id="geolocation-button-light" onclick="tabButton('geolocation-button-light', 'geolocation-button-dark')">Geolocation Quiz</div>
+                <div class="dark-tab" id="geolocation-button-dark" style="display: none"  onclick="tabButton('geolocation-button-dark', 'geolocation-button-light')">Geolocation Quiz</div>
+
+                <div class="tab" id="virus-button-light" onclick="tabButton('virus-button-light', 'virus-button-dark')">Virus Detection</div>
+                <div class="dark-tab" id="virus-button-dark" style="display: none"  onclick="tabButton('virus-button-dark', 'virus-button-light')">Virus Detection</div>
+
+                <div class="tab" id="account-button-light" onclick="tabButton('account-button-light', 'account-button-dark')">Account</div>
+                <div class="dark-tab" id="account-button-dark" style="display: none"  onclick="tabButton('account-button-dark', 'account-button-light')">Account</div>
+
+                <div class="tab" id="settings-button-light" onclick="tabButton('settings-button-light', 'settings-button-dark')">Settings</div>
+                <div class="dark-tab" id="settings-button-dark" style="display: none" onclick="tabButton('settings-button-dark', 'settings-button-light')">Settings</div>
             </div>
         </div>
         <div alt="comprehensive-button" class="comprehensive-button_img" >Comprehensive</div>
@@ -173,53 +192,52 @@
         </div>
     </div>
     <script>
-function startTask(element, taskName) {
-    const progress = element.querySelector('.progress');
-    const taskText = element.nextElementSibling;
+        function startTask(element, taskName) {
+            const progress = element.querySelector('.progress');
+            const taskText = element.nextElementSibling;
 
-    progress.style.transform = 'translateY(100%)';
-    taskText.textContent = '0%';
-    element.style.background = 'transparent'; // Ensure the circle is initially empty
+            progress.style.transform = 'translateY(100%)';
+            taskText.textContent = '0%';
+            element.style.background = 'transparent'; // Ensure the circle is initially empty
 
-    let progressPercentage = 0;
-    const interval = setInterval(() => {
-        progressPercentage += 1;
-        const translateValue = 100 - progressPercentage; // Calculate translateY value
-        progress.style.transform = `translateY(${translateValue}%)`; // Apply translateY
-        taskText.textContent = `${progressPercentage}%`;
+            let progressPercentage = 0;
+            const interval = setInterval(() => {
+                progressPercentage += 1;
+                const translateValue = 100 - progressPercentage; // Calculate translateY value
+                progress.style.transform = `translateY(${translateValue}%)`; // Apply translateY
+                taskText.textContent = `${progressPercentage}%`;
 
-        if (progressPercentage >= 100) {
-            clearInterval(interval);
-            handleTaskCompletion(element, taskText, taskName);
+                if (progressPercentage >= 100) {
+                    clearInterval(interval);
+                    handleTaskCompletion(element, taskText, taskName);
+                }
+            }, 50);
         }
-    }, 50);
-}
 
-function handleTaskCompletion(element, taskText, taskName) {
-    const progress = element.querySelector('.progress');
-    progress.style.display = 'none'; // Hide the progress bar
+        function handleTaskCompletion(element, taskText, taskName) {
+            const progress = element.querySelector('.progress');
+            progress.style.display = 'none'; // Hide the progress bar
 
-    const randomResult = Math.random();
+            const randomResult = Math.random();
 
-    if (randomResult < 0.3) {
-        element.style.background = 'red';
-        taskText.textContent = 'Lethal!(1)';
-    } else if (randomResult < 0.6) {
-        element.style.background = 'orange';
-        taskText.textContent = 'Warning(2)';
-    } else {
-        element.style.background = 'lightgreen';
-        taskText.textContent = 'No Issue Found';
-    }
-}
+            if (randomResult < 0.3) {
+                element.style.background = 'red';
+                taskText.textContent = 'Lethal!(1)';
+            } else if (randomResult < 0.6) {
+                element.style.background = 'orange';
+                taskText.textContent = 'Warning(2)';
+            } else {
+                element.style.background = 'lightgreen';
+                taskText.textContent = 'No Issue Found';
+            }
+        }
 
-function startAllTasks() {
-    const tasks = document.querySelectorAll('.task');
-    tasks.forEach((task) => {
-        startTask(task, task.textContent.trim());
-    });
-}
-
+        function startAllTasks() {
+            const tasks = document.querySelectorAll('.task');
+            tasks.forEach((task) => {
+                startTask(task, task.textContent.trim());
+            });
+        }
     </script>
 </body>
 </html>
