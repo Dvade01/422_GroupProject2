@@ -38,5 +38,9 @@
     plus users
     
 
+
+# MULTI-PLAT(lastly)
+  andiord, ios, mac, windows, linux,web
+    Flutter(Dart Language): this thing support all platform, 1 stop-ly. 
   
   
