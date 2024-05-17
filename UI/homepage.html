@@ -4,130 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CyberGuard</title>
+    <link rel="stylesheet" href="stylesheet1.css" /> 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=GFS+Didot&display=swap');
-
-        body {
-            font-family: 'GFS Didot', serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            text-align: center;
-            margin-top: 0px;
-        }
-
-        .header-container {
-            display:flex;
-            justify-content: center;
-            align-items:center;
-            background-color: #f0f0f0;
-            border-bottom: 3px solid black;
-            padding: 10px 10px 0 10px;
-        }
-
-        .logo {
-            width: 200px; /* Adjust width as needed */
-            margin-right: 0px; /* Add some space between logo and text */
-        }
-
-        .comprehensive-button_img {
-            width: 200px; /* Adjust width as needed */
-            margin-right: 0px; /* Add some space between logo and text */
-        }
-        .header {
-            font-size: 72px;
-            margin-right: 10px;
-        }
-
-        .tabs {
-            display: flex;
-            margin-left: 20px;
-            flex:0;
-        }
-
-        .tab, .dark-tab {
-            padding: 10px 20px;
-            border: 1px solid #ccc;
-            margin: 0px 1px 0px 1px;
-            cursor: pointer;
-            flex: 0;
-            text-align:center;
-            background-color: white;
-            border-radius: 20px 20px 0px 0px;
-        }
-        
-        .dark-tab {
-            background-color: rgb(164, 164, 164);
-        }
-
-        .comprehensive-button_img {
-            margin: auto;
-            margin-right: 0;
-            background-size: 285px;
-            background-image: url('/UI/media/comprehensive_button.png');
-            width: 200px;
-            height: 50px;
-            background-position: center;
-            background-repeat: no-repeat;
-            padding-top: 25px;
-            color: whitesmoke;
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        .black-bar {
-            width: 100%;
-            height: 2px;
-            background-color: black;
-            margin: 20px 0;
-        }
-
-        .task-container {
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-        }
-
-        .task-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 20px;
-            text-align: center;
-        }
-
-        .task {
-            position: relative;
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 150px;
-            font-size: 20px;
-            color: white;
-            cursor: pointer;
-            border: 3px solid black;
-            overflow: hidden; 
-        }
-
-        .task-text {
-            margin-top: 10px;
-            font-size: 18px;
-            color: black;
-        }
-
-        .progress {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: lightgreen;
-            transform: translateY(100%); /* Start from bottom */
-            transition: transform 1s ease-in-out;
-        }
     </style>
     <script src="script.js"></script>
 </head>
@@ -153,43 +32,56 @@
 
                 <div class="tab" id="account-button-light" onclick="tabButton('account-button-light', 'account-button-dark')">Account</div>
                 <div class="dark-tab" id="account-button-dark" style="display: none"  onclick="tabButton('account-button-dark', 'account-button-light')">Account</div>
-
+<!--
                 <div class="tab" id="settings-button-light" onclick="tabButton('settings-button-light', 'settings-button-dark')">Settings</div>
                 <div class="dark-tab" id="settings-button-dark" style="display: none" onclick="tabButton('settings-button-dark', 'settings-button-light')">Settings</div>
-            </div>
+-->
+<a href="settingpage.html" class="tab" id="settings-button-light" onclick="tabButton('settings-button-light', 'settings-button-dark')">Settings</a>
+<a href="settingpage.html" class="dark-tab" id="settings-button-dark" style="display: none" onclick="tabButton('settings-button-dark', 'settings-button-light')">Settings</a>
+           </div>
         </div>
         <div alt="comprehensive-button" class="comprehensive-button_img" >Comprehensive</div>
-
-        <div class="task-container">
-            <div class="task-wrapper">
-                <div class="task" style="background: rgb(46, 164, 232);" onclick="startTask(this, 'Email Analysis')">
-                    <div class="progress"></div>
-                    Email Analysis
+        <div class="task-section">
+            <div class="task-container">
+                <div class="task-wrapper">
+                    <div class="task" style="background: rgb(46, 164, 232);" onclick="startTask(this, 'Email Analysis')">
+                        <div class="progress"></div>
+                        Email Analysis
+                    </div>
+                    <div class="task-text"></div>
                 </div>
-                <div class="task-text"></div>
-            </div>
-            <div class="task-wrapper">
-                <div class="task" style="background: rgb(46, 164, 232);" onclick="startTask(this, 'Packet Capture')">
-                    <div class="progress"></div>
-                    Packet Capture
+                <div class="task-wrapper">
+                    <div class="task" style="background: rgb(46, 164, 232);" onclick="startTask(this, 'Packet Capture')">
+                        <div class="progress"></div>
+                        Packet Capture
+                    </div>
+                    <div class="task-text"></div>
                 </div>
-                <div class="task-text"></div>
-            </div>
-            <div class="task-wrapper">
-                <div class="task" style="background: rgb(46, 164, 232);" onclick="startTask(this, 'Geolocation Quiz')">
-                    <div class="progress"></div>
-                    Geolocation Quiz
+                <div class="task-wrapper">
+                    <div class="task" style="background: rgb(46, 164, 232);" onclick="startTask(this, 'Geolocation Quiz')">
+                        <div class="progress"></div>
+                        Geolocation Quiz
+                    </div>
+                    <div class="task-text"></div>
                 </div>
-                <div class="task-text"></div>
-            </div>
-            <div class="task-wrapper">
-                <div class="task" style="background: rgb(46, 164, 232);" onclick="startTask(this, 'Virus Detection')">
-                    <div class="progress"></div>
-                    Virus Detection
+                <div class="task-wrapper">
+                    <div class="task" style="background: rgb(46, 164, 232);" onclick="startTask(this, 'Virus Detection')">
+                        <div class="progress"></div>
+                        Virus Detection
+                    </div>
+                    <div class="task-text"></div>
                 </div>
-                <div class="task-text"></div>
             </div>
         </div>
+
+        <div class="score-section">
+
+        </div>
+
+        <div class="info-section">
+            
+        </div>
+
     </div>
     <script>
         function startTask(element, taskName) {
