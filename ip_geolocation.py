@@ -39,7 +39,7 @@ def get_ipinfo_geolocation(ip):
         return None
 
 
-def get_ipstack_geolocation(ip):
+'''def get_ipstack_geolocation(ip):
     """ Query IPStack for geolocation data if under the request limit. """
     if read_request_count() >= IPSTACK_REQUEST_LIMIT:
         return None  # Skip the API call if limit is reached
@@ -57,10 +57,9 @@ def get_ipstack_geolocation(ip):
             return None
     except Exception as e:
         print(f"IPStack API error: {e}")
-        return None
+        return None'''
 
-
-def get_ipgeolocation_geolocation(ip):
+'''def get_ipgeolocation_geolocation(ip):
     """ Query IPGeolocation API for geolocation data. """
     url = f"https://api.ipgeolocation.io/ipgeo?apiKey={IPGEOLOCATION_API_KEY}&ip={ip}"
     try:
@@ -74,7 +73,7 @@ def get_ipgeolocation_geolocation(ip):
             return None
     except Exception as e:
         print(f"IPGeolocation API error: {e}")
-        return None
+        return None '''
 
 
 def get_ip_geolocation(ip):
@@ -89,13 +88,13 @@ def get_ip_geolocation(ip):
         return data
 
     # Fallback: IPGeolocation
-    data = get_ipgeolocation_geolocation(ip)
-    if data and data["country"] != "Unknown Country":
-        return data
+    # data = get_ipgeolocation_geolocation(ip)
+    # if data and data["country"] != "Unknown Country":
+    # return data
 
     # Fallback to IPStack last resort
-    data = get_ipstack_geolocation(ip)
-    if data and data["country"] != "Unknown Country":
-        return data
+    # data = get_ipstack_geolocation(ip)
+    # if data and data["country"] != "Unknown Country":
+    # return data
 
     return {"city": "Unknown City", "region": "Unknown Region", "country": "Unknown Country"}
