@@ -2,11 +2,8 @@ import email
 from email import policy
 from datetime import datetime
 from ip_geolocation import get_ip_geolocation  # Ensure this module is correctly implemented
-
-from virus_total import query_virustotal, analyze_ip_reputation  # this is from virus total
-
+from virus_total import analyze_ip_reputation  # This is from virus total
 import re
-
 from datetime import datetime, timezone
 
 
@@ -85,10 +82,7 @@ def calculate_delays(received_details):
 
 def assess_phishing_risk(locations):
     """ Assess the phishing risk based on the locations of the IP addresses. """
-    # Expanded set of high-risk countries
-    high_risk_countries = {
-        'CN', 'RU', 'NG', 'UA', 'PK', 'VN', 'IR', 'BR', 'TR', 'IN'
-    }
+    high_risk_countries = {'CN', 'RU', 'NG', 'IR', 'KP', 'SY', 'VE', 'PK', 'ID'}  # Expanded set of high-risk countries
     suspicious_patterns = []
     risk_score = 0
 
@@ -96,21 +90,21 @@ def assess_phishing_risk(locations):
     for loc in locations:
         if loc['country'] in high_risk_countries:
             risk_score += 1
-            suspicious_patterns.append(f"High-risk country detected: {loc['country']}")
+            suspicious_patterns.append(f"High-risk country: {loc['country']}")
 
     # Check for erratic geographical movements
     for i in range(1, len(locations)):
         if locations[i]['country'] != "Unknown Country" and locations[i - 1]['country'] != "Unknown Country":
             if locations[i]['country'] != locations[i - 1]['country']:
-                suspicious_patterns.append(
-                    f"Geographical jump from {locations[i - 1]['country']} to {locations[i]['country']}")
+                suspicious_patterns.append(f"Jump from {locations[i - 1]['country']} to {locations[i]['country']}")
 
     # Simple heuristic: if more than two high-risk indicators are found, flag as suspicious
     if risk_score > 2:
         return True, suspicious_patterns
     return False, suspicious_patterns
 
-# Modify the main function to include phishing risk assessment
+
+# Modify the main function to include phishing risk assessment and VirusTotal analysis
 def main():
     try:
         with open('headers.txt', 'r', encoding='utf-8') as file:
@@ -125,6 +119,10 @@ def main():
     parsed_headers = parse_email_headers(raw_email)
     locations = [detail['location'] for detail in parsed_headers.get('received_details', [])]
     is_suspicious, patterns = assess_phishing_risk(locations)
+
+    # Get unique IPs for VirusTotal analysis
+    unique_ips = list(set(detail['ip'] for detail in parsed_headers.get('received_details', [])))
+    vt_results = {ip: analyze_ip_reputation(ip) for ip in unique_ips if ip != "Unknown"}
 
     print("\nEmail Analysis Results:")
     print(f"Source (Sender): {parsed_headers.get('from')}")
@@ -149,6 +147,16 @@ def main():
     for pattern in patterns:
         print(f"- {pattern}")
 
+    print("\nVirusTotal Analysis:")
+    for ip, result in vt_results.items():
+        print(f"IP: {ip}")
+        for key, value in result.items():
+            print(f"  {key}: {value}")
+        print()
+
+
+if __name__ == "__main__":
+    main()
 
 """
 When I get to work I will check an IP address and a series of steps I took to see if something was malicious using
@@ -157,6 +165,3 @@ it will return a SHAH number which we will be able to cross reference with our V
 
 this feature will also play a key role in the development of the packCapture.py
 """
-
-if __name__ == "__main__":
-    main()
