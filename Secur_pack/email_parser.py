@@ -104,7 +104,43 @@ def assess_phishing_risk(locations):
     return False, suspicious_patterns
 
 
-# Modify the main function to include phishing risk assessment and VirusTotal analysis
+# Function to generate a report from the parsed email data
+def generate_report(parsed_headers, delays, phishing_risk, patterns, vt_results):
+    report = []
+
+    report.append("Email Analysis Report\n")
+    report.append(f"Source (Sender): {parsed_headers.get('from')}")
+    report.append(f"Destination (Recipient): {parsed_headers.get('to')}")
+    report.append(f"Subject: {parsed_headers.get('subject')}")
+    report.append(f"Date Sent: {parsed_headers.get('date')}\n")
+
+    report.append("Detailed Path Analysis:")
+    for idx, detail in enumerate(parsed_headers.get('received_details', [])):
+        location_info = detail['location']
+        location_display = f"{location_info['city']}, {location_info['region']}, {location_info['country']}"
+        report.append(f"  Hop {idx + 1}: IP: {detail['ip']} - {location_display}")
+        report.append(f"       Timestamp: {detail['timestamp']}")
+
+    report.append("\nDelays Between Hops:")
+    for idx, delay in enumerate(delays):
+        report.append(f"  Delay {idx + 1}: {delay}")
+
+    report.append("\nPhishing Risk Assessment:")
+    report.append("Suspicious?" if phishing_risk else "Looks Safe")
+    for pattern in patterns:
+        report.append(f"- {pattern}")
+
+    report.append("\nVirusTotal Analysis:")
+    for ip, result in vt_results.items():
+        report.append(f"IP: {ip}")
+        for key, value in result.items():
+            report.append(f"  {key}: {value}")
+        report.append("")
+
+    return "\n".join(report)
+
+
+# Modify the main function to generate the report and save it to a file
 def main():
     try:
         with open('headers.txt', 'r', encoding='utf-8') as file:
@@ -124,44 +160,15 @@ def main():
     unique_ips = list(set(detail['ip'] for detail in parsed_headers.get('received_details', [])))
     vt_results = {ip: analyze_ip_reputation(ip) for ip in unique_ips if ip != "Unknown"}
 
-    print("\nEmail Analysis Results:")
-    print(f"Source (Sender): {parsed_headers.get('from')}")
-    print(f"Destination (Recipient): {parsed_headers.get('to')}")
-    print(f"Subject: {parsed_headers.get('subject')}")
-    print(f"Date Sent: {parsed_headers.get('date')}\n")
-
-    print("Detailed Path Analysis:")
-    for idx, detail in enumerate(parsed_headers.get('received_details', [])):
-        location_info = detail['location']
-        location_display = f"{location_info['city']}, {location_info['region']}, {location_info['country']}"
-        print(f"  Hop {idx + 1}: IP: {detail['ip']} - {location_display}")
-        print(f"       Timestamp: {detail['timestamp']}")
-
-    print("\nDelays Between Hops:")
     delays = calculate_delays(parsed_headers.get('received_details', []))
-    for idx, delay in enumerate(delays):
-        print(f"  Delay {idx + 1}: {delay}")
+    report = generate_report(parsed_headers, delays, is_suspicious, patterns, vt_results)
 
-    print("\nPhishing Risk Assessment:")
-    print("Suspicious?" if is_suspicious else "Looks Safe")
-    for pattern in patterns:
-        print(f"- {pattern}")
+    # Save the report to a file
+    with open('email_analysis_report.txt', 'w', encoding='utf-8') as report_file:
+        report_file.write(report)
 
-    print("\nVirusTotal Analysis:")
-    for ip, result in vt_results.items():
-        print(f"IP: {ip}")
-        for key, value in result.items():
-            print(f"  {key}: {value}")
-        print()
+    print("Email analysis report generated and saved to 'email_analysis_report.txt'.")
 
 
 if __name__ == "__main__":
     main()
-
-"""
-When I get to work I will check an IP address and a series of steps I took to see if something was malicious using
-the ANY.RUN api tool, this tool will give a run down the IP or Mac Address searched, it will give a report and verdict
-it will return a SHAH number which we will be able to cross reference with our Virus TOTal api to help further determine the mal-intent,
-
-this feature will also play a key role in the development of the packCapture.py
-"""
