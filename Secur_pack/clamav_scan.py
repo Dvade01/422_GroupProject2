@@ -4,13 +4,13 @@ import sys
 
 def get_clamav_db_path():
     # Adjust the path to the ClamAV database directory as needed
-    return "C:\\Program Files\\ClamAV\\db"
+    return "C:\\Program Files\\ClamAV\\db" # need to make this non-local, will need help doing this
 
 def update_clamav_db():
     """
     Updates the ClamAV database.
     """
-    log_dir = "C:\\Users\\David\\clamav_logs"
+    log_dir = "C:\\Users\\David\\clamav_logs" # Need help on this too
     log_file = os.path.join(log_dir, "freshclam.log")
 
     if not os.path.exists(log_dir):
