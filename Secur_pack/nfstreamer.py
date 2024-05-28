@@ -24,7 +24,7 @@ def analyze_pcap_with_nfstream(pcap_file):
 
 
 if __name__ == "__main__":
-    pcap_file = 'path/to/your/pcap_file.pcap'
+    pcap_file = 'C:/Users/David/Desktop/422_GroupProject2/pcap_dir/2023-01-Unit42-Wireshark-quiz.pcap/2023-01-Unit42-Wireshark-quiz.pcap'
     results = analyze_pcap_with_nfstream(pcap_file)
     for result in results:
         print(result)
