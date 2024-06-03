@@ -5,6 +5,8 @@ import json
 import time
 from virus_total import analyze_ip_reputation
 from nfstreamer import analyze_pcap_with_nfstream
+from tkinter import Tk, filedialog
+from datetime import datetime
 
 
 # Function to extract IPs, MAC addresses, and hostnames from a pcap file
@@ -81,8 +83,19 @@ def deep_packet_inspection(pcap_file):
 
 
 def main():
-    # Path to the pcap file
-    pcap_file = 'C:/Users/David/Desktop/422_GroupProject2/pcap_dir/2023-01-Unit42-Wireshark-quiz.pcap/2023-01-Unit42-Wireshark-quiz.pcap'
+    # Open file explorer to select the pcap file
+    root = Tk()
+    root.withdraw()  # Hide the root window
+    root.attributes('-topmost', True)  # Bring the file dialog to the front
+
+    pcap_file = filedialog.askopenfilename(
+        title="Select a PCAP file",
+        filetypes=[("PCAP files", "*.pcap")]
+    )
+
+    if not pcap_file:
+        print("No file selected.")
+        return
 
     # Extract IP addresses, MAC addresses, and hostnames from the pcap file
     ips, mac_addresses, hostnames = extract_info_from_pcap(pcap_file)

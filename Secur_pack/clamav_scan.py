@@ -1,26 +1,57 @@
 import os
 import subprocess
 import sys
+import shutil
 
-def get_clamav_db_path():
-    # Adjust the path to the ClamAV database directory as needed
-    return "C:\\Program Files\\ClamAV\\db" # need to make this non-local, will need help doing this
 
-def update_clamav_db():
+def ensure_clamav_in_path():
+    """
+    Ensures that ClamAV executables are in the system PATH.
+    If not, adds the default installation path to PATH.
+    """
+    clamav_path = "C:\\Program Files\\ClamAV"
+
+    # Check if ClamAV is in the PATH
+    if not any(clamav_path in p for p in os.environ["PATH"].split(os.pathsep)):
+        print(f"ClamAV not found in PATH. Adding {clamav_path} to PATH.")
+
+        # Add ClamAV to PATH
+        os.environ["PATH"] += os.pathsep + clamav_path
+
+        # Permanently add ClamAV to PATH for the current user
+        subprocess.run(['setx', 'PATH', os.environ["PATH"]], shell=True)
+        print("ClamAV added to PATH.")
+    else:
+        print("ClamAV is already in PATH.")
+
+
+def get_clamav_paths():
+    """
+    Get the paths for ClamAV database and log directory.
+    If not found, prompt the user to provide them.
+    """
+    db_path = os.environ.get('CLAMAV_DB_PATH') or "C:\\Program Files\\ClamAV\\db"
+    log_dir = os.environ.get('CLAMAV_LOG_DIR') or "C:\\Users\\Public\\clamav_logs"
+
+    if not os.path.isdir(db_path):
+        db_path = input(f"ClamAV database path not found at {db_path}. Please provide the correct path: ")
+
+    if not os.path.isdir(log_dir):
+        os.makedirs(log_dir, exist_ok=True)
+
+    return db_path, log_dir
+
+
+def update_clamav_db(log_file):
     """
     Updates the ClamAV database.
     """
-    log_dir = "C:\\Users\\David\\clamav_logs" # Need help on this too
-    log_file = os.path.join(log_dir, "freshclam.log")
-
-    if not os.path.exists(log_dir):
-        os.makedirs(log_dir)
-
     try:
         result = subprocess.run(['freshclam', '--log', log_file], capture_output=True, text=True)
         return result.stdout
     except Exception as e:
         return str(e)
+
 
 def scan_directory(directory, db_path):
     """
@@ -28,7 +59,8 @@ def scan_directory(directory, db_path):
     """
     try:
         scanned_items = 0
-        process = subprocess.Popen(['clamscan', '-r', '--database', db_path, directory], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        process = subprocess.Popen(['clamscan', '-r', '--database', db_path, directory], stdout=subprocess.PIPE,
+                                   stderr=subprocess.PIPE, text=True)
 
         full_output = []
         while True:
@@ -47,6 +79,7 @@ def scan_directory(directory, db_path):
         return '\n'.join(full_output)
     except Exception as e:
         return str(e)
+
 
 def quick_scan(db_path):
     """
@@ -55,7 +88,8 @@ def quick_scan(db_path):
     critical_dirs = ['C:\\Windows', 'C:\\Program Files', 'C:\\Users']
     try:
         scanned_items = 0
-        process = subprocess.Popen(['clamscan', '-r', '--database', db_path] + critical_dirs, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        process = subprocess.Popen(['clamscan', '-r', '--database', db_path] + critical_dirs, stdout=subprocess.PIPE,
+                                   stderr=subprocess.PIPE, text=True)
 
         full_output = []
         while True:
@@ -74,6 +108,7 @@ def quick_scan(db_path):
         return '\n'.join(full_output)
     except Exception as e:
         return str(e)
+
 
 def scan_entire_computer(db_path):
     """
@@ -81,7 +116,8 @@ def scan_entire_computer(db_path):
     """
     try:
         scanned_items = 0
-        process = subprocess.Popen(['clamscan', '-r', '--database', db_path, 'C:\\'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        process = subprocess.Popen(['clamscan', '-r', '--database', db_path, 'C:\\'], stdout=subprocess.PIPE,
+                                   stderr=subprocess.PIPE, text=True)
 
         full_output = []
         while True:
@@ -101,8 +137,11 @@ def scan_entire_computer(db_path):
     except Exception as e:
         return str(e)
 
+
 def main():
-    db_path = get_clamav_db_path()
+    ensure_clamav_in_path()
+    db_path, log_dir = get_clamav_paths()
+    log_file = os.path.join(log_dir, "freshclam.log")
 
     while True:
         print("\nChoose an option for ClamAV scan:")
@@ -117,7 +156,7 @@ def main():
             break
 
         print("Updating ClamAV database...")
-        update_result = update_clamav_db()
+        update_result = update_clamav_db(log_file)
         print("ClamAV Database Update Result:")
         print(update_result)
 
@@ -145,6 +184,7 @@ def main():
                 print(result)
             else:
                 print("Invalid choice. Please enter 1, 2, 3, or 4.")
+
 
 if __name__ == "__main__":
     main()

@@ -1,10 +1,11 @@
 import email
 from email import policy
-from datetime import datetime
+from datetime import datetime, timezone
 from ip_geolocation import get_ip_geolocation  # Ensure this module is correctly implemented
 from virus_total import analyze_ip_reputation  # This is from virus total
 import re
-from datetime import datetime, timezone
+import tkinter as tk
+from tkinter import messagebox, scrolledtext
 
 
 def parse_timestamp(timestamp_str):
@@ -140,18 +141,7 @@ def generate_report(parsed_headers, delays, phishing_risk, patterns, vt_results)
     return "\n".join(report)
 
 
-# Modify the main function to generate the report and save it to a file
-def main():
-    try:
-        with open('headers.txt', 'r', encoding='utf-8') as file:
-            raw_email = file.read()
-    except FileNotFoundError:
-        print("Error: 'headers.txt' file not found.")
-        return
-    except Exception as e:
-        print(f"An error occurred: {e}")
-        return
-
+def analyze_headers(raw_email):
     parsed_headers = parse_email_headers(raw_email)
     locations = [detail['location'] for detail in parsed_headers.get('received_details', [])]
     is_suspicious, patterns = assess_phishing_risk(locations)
@@ -163,12 +153,32 @@ def main():
     delays = calculate_delays(parsed_headers.get('received_details', []))
     report = generate_report(parsed_headers, delays, is_suspicious, patterns, vt_results)
 
-    # Save the report to a file
-    with open('email_analysis_report.txt', 'w', encoding='utf-8') as report_file:
-        report_file.write(report)
+    return report
 
-    print("Email analysis report generated and saved to 'email_analysis_report.txt'.")
+
+def display_gui():
+    def analyze():
+        raw_email = text_box.get("1.0", tk.END).strip()
+        if raw_email:
+            report = analyze_headers(raw_email)
+            with open('email_analysis_report.txt', 'w', encoding='utf-8') as report_file:
+                report_file.write(report)
+            messagebox.showinfo("Success", "Email analysis report generated and saved to 'email_analysis_report.txt'.")
+        else:
+            messagebox.showerror("Error", "No email headers provided.")
+
+    root = tk.Tk()
+    root.title("Email Header Analyzer")
+
+    tk.Label(root, text="Paste email headers below:").pack(pady=10)
+    text_box = scrolledtext.ScrolledText(root, wrap=tk.WORD, width=80, height=20)
+    text_box.pack(pady=10)
+
+    analyze_button = tk.Button(root, text="Analyze", command=analyze)
+    analyze_button.pack(pady=10)
+
+    root.mainloop()
 
 
 if __name__ == "__main__":
-    main()
+    display_gui()
