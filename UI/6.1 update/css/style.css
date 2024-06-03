@@ -364,3 +364,9 @@
     justify-content: space-between;
   }
   
+  .coming-soon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80vh; 
+}
