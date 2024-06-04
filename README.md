@@ -1,22 +1,23 @@
-# 422_GroupProject2
-Security Analyst tool 
+# Overview
+
+## Description
+This project titled CyberGuard is meant to analyze email headers and IP addresses for phishing detection, assess IP reputation via VirusTotal, check geolocation to identify suspicious patterns and analyze network traffic through PCAP files to detect potential security threats.
+
+## Authors
+Shawn Bakker (sb), Solomon Haskell (sh), David Moe (dm), William Qiu
+
+## Why it was created
+This project was created as our second project in CS 422 at the University of Oregon.
+
+## What needs to be done to compile the source code and run the program
+temp
+
+## Any additional setup that is needed.
+temp
+
+## Software dependencies.
 
 
-Try not to run the code much because its gonna cost a shitload of money if it uses a few of the API's too much
+## Description of Subdirectories.
 
 
-Also comment out the following functions on ip_geolocation.py
-
-def get_ipgeolocation_geolocation(ip):
-
-def get_ipstack_geolocation(ip):
-
-these have limited requests
-
-I have added a ip_usage.txt file that says how many we have used
-
-
-##TODO
-So at the moment I tried to make it so that the software would open up as an application so that hornof could be lazy and run the code without having
-to install any dependencies, however I could not get the executable to function properly so thats our main issue right now, hopefully you frontend guys can 
-put it into our UI anyways and make it work as an executable like hornof probably wants.
