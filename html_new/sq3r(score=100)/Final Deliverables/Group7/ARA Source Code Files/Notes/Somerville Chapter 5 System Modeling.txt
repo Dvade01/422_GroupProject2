@@ -1,0 +1,225 @@
+SQ3R Method and Active-Reading-Assistant Tutorial
+
+Step 1: Survey
+
+	In this step, one scans the text, highlighting or taking a note of any
+	chapter and section headings, visuals, topic sentences, and outlines
+	or summaries. The purpose of this is to gain a general overview of 
+	the document before in-depth reading.
+
+	In this document, all survey content has been highlighted to demonstrate
+	this step for users of this application.
+
+Step 2: Question
+
+	Now, using the gathered survey content, one constructs questions
+	to be used for the purpose of guiding the reading process.
+
+	Here are some example questions constructed from the survey content of 
+	this document:
+	
+	1. How do models aid developers in the process of developing software?
+
+	2. What is the Unified Modeling Language? 
+
+	3. What kind of graphical language is used to construct UML models? What
+	do the individual components of this graphical language communicate?
+
+	4. How many different types of UML models are there? What common 
+	software structures do these different types typically represent?
+	
+Step 3: Read
+
+	Next, one actively reads the document, attempting to answer the 
+	questions generated during the previous step. One should take 
+	notes, highlight key points, and look up unfamiliar vocabulary
+	to maximize reading comprehension in this step.
+
+	This Active-Reading-Assistant (ARA) application supports hierarchical
+	note taking for organizing ideas and structuring notes. Here is an
+	example of this in action:
+
+Chapter 5: System Modeling
+
+	Models 
+	-used to derive requirements for system
+	-helps developers understand implementation
+	-documents system structure and operation
+
+	-can be developed from different perspectives
+		-internal, external, structural, behavioral
+
+	-graphic notation can be flexible
+		-amount of detail/rigor depends on the way it is being used
+
+	UML
+	-Unified Modeling Language
+		-standard language for object-oriented modeling
+	-13 diagram types, 5 can represent essentials of a system
+		-activity, use case, sequence, class, and state diagrams
+
+5.1: Context models
+
+	-decide on scope of system being developed early
+		-how explicit a scope is can depend entirely on software
+		requirements
+		-can be determined by nontechnical factors
+
+	-context models shows a system and other systems in its environment
+		-don't show types of relationships
+		-often used alongside business process models
+
+	-UML activity diagrams show activities in a process and the flow of
+	control from one activity to another
+		-can be used to show the business processes where systems 
+		are used
+		-start is a filled circle, end is filled circle inside
+		another circle
+		-rectangles represent activities (subprocesses)
+		-arrows represent flow, solid bar means all activities
+		must be complete before moving on
+			-bar can be in parallel
+		
+	Question - what exactly is a context model?
+
+5.2: Interaction models
+
+	5.2.1: Use case modeling
+	-used for modeling interactions between system and external agents
+	-part of UML
+	-actors are stick figures, use case is an ellipse
+	-no arrows used
+		-arrows in UML represent direction of flow of messages
+	-simple overview, may require other documents for complete description
+	-composite use case shows multiple different use cases
+
+	5.2.2: Sequence diagrams
+	-UML
+	-used to model interactions between actors and objects within a system
+	-models particular use cases
+	-read from top to bottom (takes place over time)
+	-dotted line for each actor/object, represents lifeline
+	-arrows indicate interaction between
+	-alternatives denoted in box with alt
+	
+5.3: Structural models
+	
+	5.3.1: Class diagrams
+	-used in object-oriented system to show classes and associations
+	-can be used for real-world objects or data that is part of system
+	-class names in a box, lines are an association
+	-can show number of associations
+		-e. g. 1..4 or 1..* (* is arbitrary number greater than 1)
+	-can show attributes or operations by separating and extending box
+	
+	5.3.2: Generalization
+	-used to manage complexity
+	-like having a base class and inherited class, base class can be
+	the more general case
+	-In UML arrowhead pointing up indicates an instance of a more general
+	class
+
+	5.3.3: Aggregation
+	-aggregate is made up of multiple parts
+	-diamond shape is added to the link to the next class that 
+	represents the whole
+
+5.4: Behavioral models
+
+	-Models of the dynamic behavior (behavior over time) of a system
+	as it is executing
+		-show system responding to stimulus
+
+	5.4.1: Data-driven modeling
+	-these models show sequence of actions taken from input to output
+	-represented in UML using activity diagram or sequence diagrams
+
+	5.4.2: Event-driven modeling
+	-shows how system responds to external and internal events
+		-shows shift of states
+	-use UML state diagrams
+		-rectangles represent system states, arrows flow
+		-substates can be included in larger states
+	-need more detail for stimuli and states, can use a table
+
+	5.4.3: Model-driven engineering
+	-approach to software development where models are the principal
+	output
+		-developed from model-driven architecture
+		-only concerned with all aspects of software engineering
+		process
+
+5.5: Model-driven architecture
+
+	-model focused approach to software design and implementation
+		-uses subset of UML models to describe system
+		-allows high level of abstraction
+		-good for large systems that outlives hardware
+		-not a mainstream approach
+		-at odds with agile methods
+			-iterative and reflective, not waterfall
+
+	-Recommends 3 abstract system models
+		-computation independent model
+			-model domain abstractions
+		-platform independent model
+			-model operation with no reference to 
+			implementation
+		-platform-specific models
+			-separate models for each application
+			platform
+	
+	-fundamental notion to MDA: transformations between models can 
+	be defined and applied automatically by software tools
+		-rarely possible
+	
+Step 4: Recite
+
+	Once the in-depth reading has been completed, one can now attempt
+	to answer the guiding questions constructed in step 2. 
+
+	Here are some example answers to the example questions:
+
+	1. How do models aid developers in the process of developing software?
+
+	Models are used to derive requirements for a system, help developers
+	understand the process of implementation, and to document the system
+	structure and operation.
+
+	2. What is the Unified Modeling Language? 
+
+	The Unified Modeling Language is the standard language for object-
+	oriented modeling, where in this case a model is an abstract view of a 
+	system that deliberately omits details for the purpose of making a
+	representation that is easy to understand. 
+
+	3. What kind of graphical language is used to construct UML models? What
+	do the individual components of this graphical language communicate?
+
+	It depends on the type of model, but shared among the different types
+	of models showcased in this chapter, there are rectangles, commonly
+	used to denote a class or state, lines, which are used to represent
+	coordination or life of an actor or object, arrows, which can 
+	show direction of flow or an association between items, and characters
+	which can describe an association or item.
+
+	4. How many different types of UML models are there? What common 
+	software structures do these different types typically represent?
+
+	There are 13 UML models, but 5 are commonly used. Context models
+	show a systems place in an environment with other systems. Case
+	and sequence diagrams are used to describe interactions between
+	a system and other systems, or between the system and outside
+	actors (like a user). Strucutal and class diagrams show organization
+	and architecture of a system. Behavioral models show dynamic behavior
+	in a system based on internal or external cues. These are related to
+	state diagrams which show a system's shift in states due to internal
+	or external stimulus. Many of these diagrams are well suited to 
+	common software structures, but they are also very adaptable. It is
+	up to a developer to decide what kind of UML model will best fit 
+	a system they want to design.
+
+Step 5: Review
+	The last step is to regularly review your notes and the document. 
+	This ensures a deeper understanding of the content and helps with
+	long term retention.
