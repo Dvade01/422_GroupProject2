@@ -16,8 +16,10 @@ temp
 temp
 
 ## Software dependencies.
-
+This code runs on Python 3.11.4
 
 ## Description of Subdirectories.
+Secur_pack contains the backend logic for parsing the email's and extracting information.
 
+UI contains the user interface as well as mockup png files.
 
