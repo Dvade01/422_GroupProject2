@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Store</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap" rel="stylesheet"> 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <style>
+        .items-container {
+            padding: 20px 50px; 
+        }
+
+        .navbar {
+            margin-bottom: 20px; 
+        }
+
+        .single-product-item {
+            width: 250px; 
+            height: 300px; 
+            margin: 10px auto;
+            padding: 10px;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .single-product-item[data-purchased="true"] {
+            background-color: white; 
+        }
+
+        .cart-btn.greyed-out {
+            background-color: grey;
+            pointer-events: none;
+            cursor: not-allowed;
+        }
+
+        .cart-btn.green {
+            background-color: green;
+            color: white;
+        }
+
+        .background-img {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.5;
+            z-index: -1;
+        }
+
+        .solid-background {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="background" class="background-img"></div>
+
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+    <div id="background" class="background-img"></div>
+    <div class="hero_area solid-background">
+        <!-- Navbar Start -->
+        <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 px-4 px-lg-5 solid-background">
+            <a href="index.html" class="navbar-brand d-flex align-items-center">
+                <h2 class="m-0 text-primary">CyberGuard</h2>
+            </a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto py-4 py-lg-0">
+                    <a href="index.html" class="nav-item nav-link">Index</a>
+                    <a href="home.html" class="nav-item nav-link">Home</a>  
+                    <a href="Email Analysis.html" class="nav-item nav-link">Email Analysis</a>
+                    <a href="Packet Capture.html" class="nav-item nav-link">Packet Capture</a>
+                    <a href="Geolocation Quiz.html" class="nav-item nav-link">Geolocation Quiz</a>
+                    <a href="Virus Dectection.html" class="nav-item nav-link">Virus Dectection</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Settings</a>
+                        <div class="dropdown-menu rounded-0 rounded-bottom m-0">
+                            <a href="account.html" class="dropdown-item">Account</a>
+                            <a href="Store.html" class="dropdown-item">Store</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="h-100 d-lg-inline-flex align-items-center d-none">
+                    <a class="btn btn-square rounded-circle bg-light text-primary me-2" href=""><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-square rounded-circle bg-light text-primary me-2" href=""><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-square rounded-circle bg-light text-primary me-2" href=""><i class="fab fa-linkedin-in"></i></a>
+                    <a class="btn btn-square rounded-circle bg-light text-primary me-0" href=""><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </nav>
+        <!-- Navbar End -->
+    </div>
+
+    <div class="items-container solid-background">
+        <div class="item">
+            <div class="product-frame">
+                <div class="single-product-item" id="membership-item">
+                    <div class="product-image">
+                        <img src="img/Membership.jpg" alt="">
+                    </div>
+                    <h3>Membership</h3>
+                    <button class="cart-btn" onclick="purchaseItem('Membership', this)"><i class="fas fa-shopping-cart"></i> Purchase</button>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="product-frame">
+                <div class="single-product-item">
+                    <div class="product-image">
+                        <img src="img/peppa.png" alt="">
+                    </div>
+                    <h3>Skin: Peppa</h3>
+                    <button class="cart-btn" onclick="selectItem('img/peppa.png', this)"><i class="fas fa-shopping-cart"></i> Purchase</button>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="product-frame">
+                <div class="single-product-item">
+                    <div class="product-image">
+                        <img src="img/leopard print.jpg" alt="">
+                    </div>
+                    <h3>Skin: Leopard</h3>            
+                    <button class="cart-btn" onclick="selectItem('img/leopard print.jpg', this)"><i class="fas fa-shopping-cart"></i> Purchase</button>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="product-frame">
+                <div class="single-product-item">
+                    <div class="product-image">
+                        <img src="img/cosmic.png" alt="">
+                    </div>
+                    <h3>Skin: Cosmic</h3>          
+                    <button class="cart-btn" onclick="selectItem('img/cosmic.png', this)"><i class="fas fa-shopping-cart"></i> Purchase</button>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="product-frame">
+                <div class="single-product-item">
+                    <div class="product-image">
+                        <img src="img/pickchu.png" alt="">
+                    </div>
+                    <h3>Skin: Pikachu</h3>
+                    <button class="cart-btn" onclick="selectItem('img/pickchu.png', this)"><i class="fas fa-shopping-cart"></i> Purchase</button>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="product-frame">
+                <div class="single-product-item">
+                    <div class="product-image">
+                        <img src="img/lamborghini.png" alt="">
+                    </div>
+                    <h3>Skin: Lamborghini</h3>
+                    <button class="cart-btn" onclick="selectItem('img/lamborghini.png', this)"><i class="fas fa-shopping-cart"></i> Purchase</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/isotope/isotope.pkgd.min.js"></script>
+    <script src="lib/lightbox/js/lightbox.min.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        let hasMembership = false;
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const savedBackgroundImage = localStorage.getItem('backgroundImage');
+            if (savedBackgroundImage) {
+                applyBackgroundImage(savedBackgroundImage);
+            }
+        });
+
+        function purchaseItem(item, button) {
+            if (item === 'Membership') {
+                hasMembership = true;
+                button.innerText = 'ALREADY A MEMBER';
+                button.classList.add('greyed-out');
+                button.onclick = null;
+                document.querySelectorAll('.single-product-item').forEach(function (element) {
+                    if (element.querySelector('h3').innerText !== 'Membership') {
+                        element.dataset.purchased = "true";
+                        let cartButton = element.querySelector('.cart-btn');
+                        cartButton.innerText = 'Select';
+                        cartButton.classList.add('green');
+                        cartButton.onclick = function () {
+                            selectItem(element.querySelector('img').src);
+                        };
+                    }
+                });
+            }
+        }
+
+        function selectItem(imageSrc) {
+            localStorage.setItem('backgroundImage', imageSrc);
+            applyBackgroundImage(imageSrc);
+        }
+
+        function applyBackgroundImage(imageSrc) {
+            let backgroundDiv = document.getElementById('background');
+            if (!backgroundDiv) {
+                backgroundDiv = document.createElement('div');
+                backgroundDiv.id = 'background';
+                backgroundDiv.className = 'background-img';
+                document.body.appendChild(backgroundDiv);
+            }
+            backgroundDiv.style.backgroundImage = `url(${imageSrc})`;
+            backgroundDiv.style.backgroundSize = 'cover';
+            backgroundDiv.style.backgroundPosition = 'center';
+            backgroundDiv.style.opacity = '0.5';
+        }
+    </script>
+</body>
+
+</html>
