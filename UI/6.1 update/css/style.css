@@ -348,6 +348,7 @@
     flex-wrap: wrap;
     justify-content: center;
     width: 90%;
+    padding: 0 calc((100% - (410px * 3)) / 2);
 }
 
 /* Individual item */
