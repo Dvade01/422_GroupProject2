@@ -1,0 +1,171 @@
+Received: from MN6PR10MB7491.namprd10.prod.outlook.com (2603:10b6:208:47c::19)
+ by PH0PR10MB5420.namprd10.prod.outlook.com with HTTPS; Tue, 23 Apr 2024
+ 20:08:17 +0000
+Received: from BYAPR11CA0042.namprd11.prod.outlook.com (2603:10b6:a03:80::19)
+ by MN6PR10MB7491.namprd10.prod.outlook.com (2603:10b6:208:47c::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.44; Tue, 23 Apr
+ 2024 20:08:05 +0000
+Received: from CO1PEPF000044EF.namprd05.prod.outlook.com
+ (2603:10b6:a03:80:cafe::52) by BYAPR11CA0042.outlook.office365.com
+ (2603:10b6:a03:80::19) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7495.33 via Frontend
+ Transport; Tue, 23 Apr 2024 20:08:05 +0000
+Authentication-Results: spf=softfail (sender IP is 184.171.120.155)
+ smtp.mailfrom=notifications.joinhandshake.com; dkim=fail (signature did not
+ verify) header.d=notifications.joinhandshake.com;dmarc=fail action=oreject
+ header.from=notifications.joinhandshake.com;
+Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
+ notifications.joinhandshake.com discourages use of 184.171.120.155 as
+ permitted sender)
+Received: from exchange.uoregon.edu (184.171.120.155) by
+ CO1PEPF000044EF.mail.protection.outlook.com (10.167.241.69) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7519.19 via Frontend Transport; Tue, 23 Apr 2024 20:08:05 +0000
+Received: from is-cc-ex02.ad.uoregon.edu (184.171.120.155) by
+ is-cc-ex02.ad.uoregon.edu (184.171.120.155) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.7; Tue, 23 Apr 2024 13:07:26 -0700
+Received: from smtp.uoregon.edu (163.41.192.205) by is-cc-ex02.ad.uoregon.edu
+ (184.171.120.155) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.7 via Frontend
+ Transport; Tue, 23 Apr 2024 13:07:26 -0700
+Received: from mx0a-000bfd01.pphosted.com (mx0a-000bfd01.pphosted.com [148.163.145.154])
+	by smtp.uoregon.edu (8.15.2/8.15.2) with ESMTPS id 43NK7PgC4076591
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+	for <dmoe7@uoregon.edu>; Tue, 23 Apr 2024 13:07:26 -0700
+Received: from pps.filterd (m0158910.ppops.net [127.0.0.1])
+	by mx0a-000bfd01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 43NK2Sif026594
+	for <dmoe7@uoregon.edu>; Tue, 23 Apr 2024 20:07:25 GMT
+Authentication-Results-Original: ppops.net;	spf=pass
+ smtp.mailfrom=handshake@notifications.joinhandshake.com;	dkim=pass
+ header.s=pic header.d=notifications.joinhandshake.com
+Received: from m247-179.mailgun.net (m247-179.mailgun.net [159.112.247.179])
+	by mx0a-000bfd01.pphosted.com (PPS) with ESMTPS id 3xpkp200m0-5
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <dmoe7@uoregon.edu>; Tue, 23 Apr 2024 20:07:23 +0000 (GMT)
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=notifications.joinhandshake.com; q=dns/txt; s=pic; t=1713902840; x=1713910040;
+ h=Message-Id: reply-to: To: To: From: From: Subject: Subject: Content-Type: Mime-Version: Date: List-Unsubscribe: List-Unsubscribe-Post: Sender;
+ bh=F5McQXNvxoiKim4PA+vKQGwGMBVpDVa5ywf7oBp4yjA=;
+ b=ECEwLm2pL0cl5zi2/Iraqvm5uQ6WcFlekGWjwCSf0AQ/jPPmVE7QuaNW+0mgscjno/zDzpEf9dRtiuX40ijTR76plNwnfBBcsNAjDMGYyun7I7LS+qzb/oQ++1rO25HzW56LkxagF2jOZC+n4+o7gVr57zvnnrWMiZEjS2D6VKA=
+X-Mailgun-Sending-Ip: 159.112.247.179
+X-Mailgun-Sid: WyJkNDY3ZCIsImRtb2U3QHVvcmVnb24uZWR1IiwiMmQ5NjciXQ==
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+List-Unsubscribe: <mailto:u+mnqw24dbnftw4x3pmjvgky3ul5zw65lsmnst2zlyorsxe3tbnqtggylnobqwsz3ol5xwe2tfmn2f65dzobst2q3bnvygc2lhnzhwe2tfmn2ek6dumvzg4ylmiv3gk3tuezsd2mtehe3dojtihu2dkmrwguydembymvstsyjume2tkojvgy2gcmrvmu4tcobvmm2ggjtjhuzdamruga2demzsgaydomrqfy3weyjumu2tcn3gga4gimrrme3sknbqnzxxi2lgnfrwc5djn5xhgltkn5uw42dbnzshg2dbnnss4y3pnutgs3tumvzg4ylml5wwk43tmftwkx3jmq6tcmbtgiztqnbyhezcm3lfonzwcz3fl52xk2lehu2dcnzshbrdgobngrsgeyrngqzginznmi2dgmznmy2dgztdmuzdcojzme3sm4dsmvwws5lnl5sw24dmn54wk4s7nfsd2mjqg44tmjtqojxwi5ldorpwe5ldnnsxipkfnvygy33zmvzcwy3bnvygc2lhnzzswjjsgyvwe5lmnmvw2zltonqwozltezzd2zdnn5stojjugb2w64tfm5xw4ltfmr2sm4tfmnuxa2lfnz2f643uovsgk3tul5uwipjtgy4dkmrvge2cm43znzrv65loon2we43dojuwezj5orzhkzjgoq6wg4tfmf2gkx3jnz2gk4tomfwf63lfonzwcz3fl5rwc3lqmfuwo3s7gqydinzrg4thipldojswc5dfl5uw45dfojxgc3c7nvsxg43bm5ssm5dbnrsw45c7mvxgoylhmvwwk3tul5rwc3lqmfuwo3s7mrqxizk7nfsd2nrvgm3tcnjgorqwyzloorpwk3thmftwk3lfnz2f6y3bnvygc2lhnzpwszb5gqydinzrg4thmylsnfqxi2lpny6wk3lqnrxxszlsl5wwk43tmftwkx3dm!
+ fwxayljm5xf6zlwmvxhix3on5pwc3lcmfzxgylen5za@notifications.joinhandshake.com>,
+ <https://email.notifications.joinhandshake.com/u/eJx8kk2O4yAQhU_TbKJEmB9jL1iNsp4joAIqDp0AFj-tye1HTtJZTDS9Aj1e8VGvcBBXCEsy2X6ia6bmXhxq_NOwJLiSf8_bbUX96yn-vmvHp_f4hakRr5mfR0XOWkg2SsrohDiDAClnOQpgEudhkk44EjSjTFDBOKNUMXpQFgTKQZ3o5NkA6kPQlFs4BQct5FQPnzmkMyRfz3DBg8uRhPSAm4i1woImeD1QzvgkppmRb7X34LUYFJssn_bCW7sXzKu9FZzvT4KfHLJhnkGRtWAMPRqM6zXfsDwuVPNI1pJ9d83Y7i7Y9PFp2H1HVHcfbNzZfr3snthKivYx49ZIzwWXnA7oOynowhowNVNb99savObjJJkcBKm35ExPtdvqSrCoW-lImnYFoaF56_g1IkGFGtT_naTBdYNhWmDBuG1ftf5e4PUouRrkT84tyAfoC0q4D0a_wnp7E26fwqRsIFqoFXwufwMAAP__NK3d0Q>
+Received: from <unknown> (<unknown> []) by 4a8e615d3bfc with HTTP id
+ 662814f8a3c54eb090328df0; Tue, 23 Apr 2024 20:07:20 GMT
+Date: Tue, 23 Apr 2024 20:07:20 +0000
+Content-Type: multipart/alternative;
+ boundary="4cb9fcde29c2cfe57ae3b02c7549fb6710b47649d19e8ca062a5adbd09f0"
+Subject: =?UTF-8?q?You=E2=80=99re_invited_to_GM=E2=80=99s_free,_virtual_Women_in_D?=
+ =?UTF-8?q?ata_Science_Conference?=
+From: Laura del Amo via Handshake <handshake@notifications.joinhandshake.com>
+To: dmoe7@uoregon.edu
+X-Mailgun-Tag: create_internal_message_campaign_404717
+X-Mailgun-Tag: create_internal_message
+X-Mailgun-Require-Tls: false
+X-Mailgun-Track-Clicks: true
+X-Mailgun-Track-Opens: true
+X-Mailgun-Native-Send: true
+reply-to: handshake@notifications.joinhandshake.com
+X-Mailgun-Variables: {"campaign_object_source": "external", "campaign_object_type":
+ "CampaignObjectExternalEvent", "internal_message_id": "1032384892",
+ "message_uuid": "41728b38-4dbb-42d7-b433-f43fce2199a7",
+ "premium_employer_id": "10796", "product_bucket": "Employer campaigns & bulk
+ messages", "recipient_student_id": "36852514", "sync_unsubscribe": "true",
+ "talent_engagement_campaign_date_id": "653715",
+ "talent_engagement_campaign_id": "404717", "variation":
+ "employer_message_campaign_event_no_ambassador"}
+Message-Id: <20240423200720.7ba4e517f08d21a7@notifications.joinhandshake.com>
+X-Proofpoint-GUID: _hpKTMmA0sU_b3o7T5TwzGfF2iIiZD7j
+X-Proofpoint-ORIG-GUID: _hpKTMmA0sU_b3o7T5TwzGfF2iIiZD7j
+X-CLX-Shades: MLX
+X-CLX-Response: 1TFkXGB8bEQpMehceHx4RCllEF2JZemB4HB9Pbn1QEQpYWBdrUmsaAWR+cll JBREKeE4Xb2ZOc059fHBIXGQRCnhLF2tSaxoBZH5yWUkFEQp5TBdjQ3JFYRhOXx4eXREKQ0gXBx sYHREKQ1kXBxkYGREKQ0kXGgQaGhoRCllNF2dmchEKWUkXGnEaEBp3BhgZG3EdHx8TGhAZHBN3B
+ hgaBhoRClleF2xseREKSUYXX0VYT01FRHVCRVleT04RCklHF3hPTREKQ04XdUJaYX5nR2saWX91 SBlFHX4ffl1QbUxsGENjQ3BuHUARClhcFx8EGgQZHB4FGxoEGxoaBBsZHgQZHxAbHhofGhEKXlk XTnJIR30RCk1cFxwZGxEKTFoXaWhpTU1dEQpMRhdva2tra2sRCkJPF2FmbHNPRk9kUlpOEQpDWh
+ cbHxMEGxsYBBgeHQQbHRMRCkJeFxsRCkJGF2xSeWxEZlNtYxtDEQpCRxdtH0YSfwVSbmJBaxEKQ lwXGxEKQksXZ0lOaEhrBUMZT0sRCkJJF29mTnNOfXxwSFxkEQpCRRdnWB19XGR5S3x+fxEKQk4X b2ZOc059fHBIXGQRCkJMF2tSaxoBZH5yWUkFEQpCbBdpUHxDGkJTW0ZIUBEKQkAXekETEm1ceWB
+ 8EmURCkJYF2ZTEntJbEdMeFxyEQpaWBcZEQp5QxdjaXISX0gTBWJERxEKWUsXGR0bExEKWksXGR 0bExEKcGgXYGtDfUgYTkxcR10QHRoRCnBoF2FmeW9JYUBDcHlZEBoRCnBoF2YfaWtiYXMdSWEcE BoRCnBoF2dCAU5kHx8ZWFNDEBwaEQpwaBdvXB9uQmVvYxtGUBAaEQpwaBdsUxlfe0IcHVkZQxAa
+ EQpwaBdhYmhPZl1SHmgfbRAaEQpwaBdleGsfSElpXB5BGBAaEQpwfRdrfX5AElJsaWJLTxAaEQp wfRdmY25GcBhaYUFlZBAaEQpwfRdhWmBbH2Rvf0ViUBAaEQpwfRdibhoSWxxCUEkdRxAcGhEKcH 0XYn8Sa35DSEh4Q14QGxgRCnB9F2JdQhlHQF9OHH95EBoRCnB9F2BMGBJGW2lGRE5jEBoRCnB9F
+ 2VeXFN8enptAUd5EBIfEQpwfRdoGVt5aGQeEnMdWBAaEQpwfRdjQ0Qdb15bXVsSWxAbGRgRCnB9 F2F6TmgZTGVFZkFHEBoRCnB9F2RBW0l8W3JQfFtNEBsZGBEKcH0XYkVTQGxfTFlHAR8QGhEKcH0 XZmtOX31jeWxOaWgQGxkYEQpwfRdmTX4aGwEbHB5EQRAbGBIRCnB9F2xGRlp9flNjWB0aEBoRCn
+ B9F2UcUB0SRBkaGFh4EBsZHBEKcH0XZwVwXWdlHWNoaVIQGhEKcH0XbhhQbHhZXkJnAUUQGhEKc H0XaEV9aEtIWRpZfloQGhEKcH0XYHkeZFpBYBpyf1kQGhEKcH0Xa3h4bXIYX0VjbkwQGhEKcH0X YFl+a2lPc0IYTnIQGxkeEQpwfRd6ZWF6Qhh7RlNzThAaEQpwfxdkU28BU0JrYEAdeBAbGBsRCnB
+ fF2ZvHVteTkFhRltgEBsaGhEKcH8XaB9/ZkBPYWJueG8QHB8RCnBfF2VzUG5pa2kcEhlTEBseHB EKcH8XYGxnZ3gbRRpBWFoQEh8RCnBfF29Cb0kZfW5oGx5gEBIfEQpwXxdvaFATBUhHTVtTUxAbH hMRCnBfF2R/BRN+aVJ7cnsZEBsZHBEKcF8XY0cdTVJMEhkZeRsQEh8RCnBfF2ZeQE4ST116f0kZ
+ EB0SEQpwXxd6HXhNT1JYXx9IThAbHhoRCnBfF2QaW05HYh1SfH9NEB0SEQpwbBdsTm8FHWUFa0Z +ZxAaEQptfhcaEQpYTRdLESA=
+MIME-Version: 1.0
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-04-23_16,2024-04-23_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=inbound_notspam policy=inbound score=0 malwarescore=0 spamscore=0
+ suspectscore=0 priorityscore=454 clxscore=251 bulkscore=0 phishscore=0
+ adultscore=0 mlxscore=0 lowpriorityscore=0 impostorscore=0 mlxlogscore=999
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2404010003
+ definitions=main-2404230048 domainage_hfrom=3719 domainage_replyto=3719
+Return-Path: handshake@notifications.joinhandshake.com
+X-OrganizationHeadersPreserved: is-cc-ex02.ad.uoregon.edu
+X-MS-Exchange-Organization-ExpirationStartTime: 23 Apr 2024 20:08:05.1491
+ (UTC)
+X-MS-Exchange-Organization-ExpirationStartTimeReason: OriginalSubmit
+X-MS-Exchange-Organization-ExpirationInterval: 1:00:00:00.0000000
+X-MS-Exchange-Organization-ExpirationIntervalReason: OriginalSubmit
+X-MS-Exchange-Organization-Network-Message-Id:
+ d2f429af-1d1e-4202-8245-08dc63d11632
+X-EOPAttributedMessage: 0
+X-MS-Exchange-Organization-MessageDirectionality: Originating
+X-CrossPremisesHeadersPromoted: CO1PEPF000044EF.namprd05.prod.outlook.com
+X-CrossPremisesHeadersFiltered: CO1PEPF000044EF.namprd05.prod.outlook.com
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic:
+ CO1PEPF000044EF:EE_|MN6PR10MB7491:EE_|PH0PR10MB5420:EE_
+X-MS-Exchange-Organization-AuthSource: is-cc-ex02.ad.uoregon.edu
+X-MS-Exchange-Organization-AuthAs: Anonymous
+X-OriginatorOrg: uoregon.edu
+X-MS-Office365-Filtering-Correlation-Id: d2f429af-1d1e-4202-8245-08dc63d11632
+X-MS-Exchange-Organization-SCL: 1
+X-Microsoft-Antispam: BCL:0;
+X-Forefront-Antispam-Report:
+ CIP:184.171.120.155;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:exchange.uoregon.edu;PTR:is-cc-ex02.uoregon.edu;CAT:NONE;SFS:(13230031)(82310400014)(4143199003);DIR:INB;
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Apr 2024 20:08:05.0866
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d2f429af-1d1e-4202-8245-08dc63d11632
+X-MS-Exchange-CrossTenant-Id: 8f0b198f-f447-4cfe-ba03-526b46c661f8
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=8f0b198f-f447-4cfe-ba03-526b46c661f8;Ip=[184.171.120.155];Helo=[exchange.uoregon.edu]
+X-MS-Exchange-CrossTenant-AuthSource: is-cc-ex02.ad.uoregon.edu
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN6PR10MB7491
+X-MS-Exchange-Transport-EndToEndLatency: 00:00:12.1612037
+X-MS-Exchange-Processed-By-BccFoldering: 15.20.7472.035
+X-Microsoft-Antispam-Mailbox-Delivery:
+	ucf:0;jmr:0;auth:0;dest:I;ENG:(910001)(944506478)(944626604)(920097)(930097)(140003);
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?kVhp2WyU761laii5hftd/cKHlqmk5Ygew65rDpGJop0hSnuKwu5DR7ZXwDy7?=
+ =?us-ascii?Q?M/QHrNwO0KPAzD/GaU9z6zC6J8cszAvDqc3JmIuRNldvP0RAt7plkSqjqVLY?=
+ =?us-ascii?Q?V6JeOOJ37n7isLC9xtBPIDPcJG9sa62hEZWW/3lM3BCwR9EepHLrDuGSjbND?=
+ =?us-ascii?Q?UlfUia9wL0qvlZD10+Mv7UgxkkAISYZOiPHFQvWvJ/D5nsQJkujergFRF1xg?=
+ =?us-ascii?Q?2Q4fy1gUOL/EOhZ6fnTpu6j4+vMRwnwynxzU6g73tG9XUKs+cep4XMrzfbSn?=
+ =?us-ascii?Q?IovWvPEgr723u8676Cg3tXdOA5v21URxUVpSL5kFGUwpFFA93hQo5RFxqfKk?=
+ =?us-ascii?Q?strl3+JnyqiffoFceQ5tRSBUHzjjvNINCONTK3VvafOTa6OMkTqtsu7tJ1jD?=
+ =?us-ascii?Q?KqaqSxpwE1H4Vt6o5XXTGGjmI0ki86Ch8PmbY5JYuwzE/QMPSBTjReBRJ/bX?=
+ =?us-ascii?Q?5dQ3HVufBB6V2XmoxMsmushBsFr1xTuoN4c9HBsbcL4cvPwyC8DMpQt3RnuC?=
+ =?us-ascii?Q?GlBFMH4jJrgkJ2AuVFC2qI33rsnuFDYf8frX/Fpr3UauSNu20FnaxhKQ/d4Z?=
+ =?us-ascii?Q?+ClE/yyZcIvDSB2Xldds5gzVpGDPzDaFVipvqReRJEafSECcznrhGrQ2DpUf?=
+ =?us-ascii?Q?sgIFtFU9DRli70JtcXXHicSiu4PFDFR+wvXH/qk7oAY5MUhSkFFQVmHw8mnS?=
+ =?us-ascii?Q?QhjNkzhf1sp40rV/ZLOmyST0dExXgOVqHV2UG4p28zNif+OiIPU56VnRGyaB?=
+ =?us-ascii?Q?hRIZZCACOmsQFsjlE5xV3P1eMEUCim2sR53wyL+0FvR9yT1fWgIqfNaS3DkT?=
+ =?us-ascii?Q?pJywppR753KmpAi1GN16gkWOYnudIv0cPwAnJYCI3Je2XiaZqg+0ERqJQpvf?=
+ =?us-ascii?Q?RtW4TgaFX30iVnh3jJnrPxDoTZgIWKUeYCJnQ0X40wjuualTCZ9wCm4RMRKp?=
+ =?us-ascii?Q?aqXJjQvFtj0ap0fLdzoHi3wE/0gXf/ZsplY+xlmMc076U3ry6DqVoRrkLlNH?=
+ =?us-ascii?Q?t31lCNQDQxSZpJr1B+lo4dSo8SV2bOE56GITSCMoioIQzoJXj+iy1SvLyS1t?=
+ =?us-ascii?Q?5QvzocoIBaYXTC6l39pJx9yASn7llIHSwWeBQ79wrI+8MXRVJc27ClLDUrLK?=
+ =?us-ascii?Q?uH2CUFJfgaHULdK/Z6Zed4NGvneho1p47jufQklY/7MetOoCQGpGJdjLMpsU?=
+ =?us-ascii?Q?qjVvAcQ7cFnSpQY5AcUmn4Y0i8+bfVXDASbSFOM1n5XiRhwwb0M4kySSmh86?=
+ =?us-ascii?Q?LYHFtLCa7lp0E/O3jIRgw7X76izlmsdZkT8ai5WEv6I8m+WG4AbQVIPlRknQ?=
+ =?us-ascii?Q?8GytmSJAdmuhR8jiVCBTxKS1mnVRz21PoYmN8ftK10obcDnE5Xz1YuQow4qZ?=
+ =?us-ascii?Q?KWOKGdhJ9n5XZyHrQqb/FnffS/x9m7SKOJZ0V7NUF500n/3JjSOQitUgGpPy?=
+ =?us-ascii?Q?e9vFPsH4I30xVRRXZ852t1RVXUyzA/mhKHbqmOpo2zNNQHwOdu69nLmnBgxj?=
+ =?us-ascii?Q?2+aFLmwnPSepWG3gfJ4sb39V+nJsww2+JKbVe2oabWthupz0S8Iy16KmtcBS?=
+ =?us-ascii?Q?Azrupr1zifVWtKPFQrIfot8fN7D2UOLW//mQokhNcggMId4SzdL1iLHPRlNM?=
+ =?us-ascii?Q?jAuIFaPYfDcuyV1/RVl+Sy1t+Xw4fHUepLA8e1OowTRQKLy5O9MCbbCazsqZ?=
+ =?us-ascii?Q?IJ0aAxgyNzZBywav1KkoWojO1da5Qn8VjDW3UVrszMYVxtaWO5EELYWNI8iI?=
+ =?us-ascii?Q?k82AgB8PzNhs3yW/VwZ/jLzPwdmlo5wmCmJtoEQVhSfc4f9O0oG/OXpohcP4?=
+ =?us-ascii?Q?R21RcoN6igb94w=3D=3D?=
