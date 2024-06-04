@@ -14,6 +14,7 @@ Dowload the code and navigate to the 422_GroupProject2.
 
 ## Any additional setup that is needed.
 No. It is being hosted on an exisiting server, both ix-dev and shell.uoregon .
+See also: Installation_Instructions.pdf
 
 ## Software dependencies.
 This code runs on Python 3.11.4
